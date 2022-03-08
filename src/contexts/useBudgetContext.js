@@ -9,9 +9,9 @@ export const useBudgetContext = () => {
 };
 
 function BudgetProvider({ children }) {
-  const [budgets, setbudgets] = useLocalStorage("budgets", []);
+  const [budgets, setBudgets] = useLocalStorage("budgets", []);
   const [expenses, setExpenses] = useLocalStorage("expenses", []);
-  function getBudgetExpense(id) {
+  function getBudgetExpenses(id) {
     return expenses.filter((expense) => expense.budgetId === id);
   }
   function deleteExpense(id) {
@@ -20,7 +20,7 @@ function BudgetProvider({ children }) {
     );
   }
   function deleteBudget(id) {
-    setbudgets((prevBudgets) =>
+    setBudgets((prevBudgets) =>
       prevBudgets.filter((budget) => budget.id !== id)
     );
   }
@@ -34,12 +34,12 @@ function BudgetProvider({ children }) {
     ]);
   }
   function addBudget(budget) {
-    setExpenses((prevExpenses) => [
+    setBudgets((prevBudgets) => [
       {
         id: uuid4(),
         ...budget,
       },
-      ...prevExpenses,
+      ...prevBudgets,
     ]);
   }
   return (
@@ -47,7 +47,7 @@ function BudgetProvider({ children }) {
       value={{
         budgets,
         expenses,
-        getBudgetExpense,
+        getBudgetExpenses,
         deleteBudget,
         deleteExpense,
         addBudgetExpense,
