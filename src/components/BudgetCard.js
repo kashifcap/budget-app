@@ -1,5 +1,12 @@
 import { Button, Card, ProgressBar, Stack } from "react-bootstrap";
-function BudgetCard({ name, amount, max, gray, controlExpenseModal }) {
+function BudgetCard({
+  name,
+  amount,
+  max,
+  gray,
+  controlExpenseModal,
+  controlViewExpenseModal,
+}) {
   const classnames = [];
   if (amount > max) {
     classnames.push("bg-danger", "bg-opacity-10");
@@ -23,7 +30,7 @@ function BudgetCard({ name, amount, max, gray, controlExpenseModal }) {
             className="rounded-pill"
             variant={getVariant(amount, max)}
             min={0}
-            max={max}
+            max={max === 0 ? 0.1 : max}
             now={amount}
           />
         )}
@@ -37,7 +44,12 @@ function BudgetCard({ name, amount, max, gray, controlExpenseModal }) {
               <Button variant="outline-primary" onClick={controlExpenseModal}>
                 Add Expense
               </Button>
-              <Button variant="outline-secondary">View Expense</Button>
+              <Button
+                variant="outline-secondary"
+                onClick={controlViewExpenseModal}
+              >
+                View Expense
+              </Button>
             </>
           )}
         </Stack>

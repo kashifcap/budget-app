@@ -4,7 +4,10 @@ import {
   UNCATEGORIZED_EXPENSE_ID,
 } from "../contexts/useBudgetContext";
 
-function UncategorizedBudgetCard({ controlExpenseModal }) {
+function UncategorizedBudgetCard({
+  controlExpenseModal,
+  controlViewExpenseModal,
+}) {
   const { getBudgetExpenses } = useBudgetContext();
   const amount = getBudgetExpenses(UNCATEGORIZED_EXPENSE_ID).reduce(
     (total, expense) => total + expense.amount,
@@ -17,6 +20,7 @@ function UncategorizedBudgetCard({ controlExpenseModal }) {
       amount={amount}
       gray
       controlExpenseModal={controlExpenseModal}
+      controlViewExpenseModal={controlViewExpenseModal}
     />
   );
 }

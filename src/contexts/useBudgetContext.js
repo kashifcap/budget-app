@@ -22,6 +22,15 @@ function BudgetProvider({ children }) {
     );
   }
   function deleteBudget(id) {
+    setExpenses((prevExpenses) => {
+      return prevExpenses.map((expense) => {
+        if (expense.budgetId !== id) return expense;
+        return {
+          ...expense,
+          budgetId: UNCATEGORIZED_EXPENSE_ID,
+        };
+      });
+    });
     setBudgets((prevBudgets) =>
       prevBudgets.filter((budget) => budget.id !== id)
     );
