@@ -10,7 +10,7 @@ function AddBudgetModal({ show, onHide }) {
     e.preventDefault();
     addBudget({
       name: nameRef.current.value,
-      max: maxRef.current.value,
+      max: parseInt(maxRef.current.value),
     });
     onHide();
   };
